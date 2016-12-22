@@ -56,8 +56,8 @@ class ThunderCatsSkill(MycroftSkill):
     def initialize(self):
         self.load_data_files(dirname(__file__))
 
-        call_thundercats_intent = IntentBuilder("CallThunderCatsIntent").\
-            require("Thundercats").build()
+        call_thundercats_intent = IntentBuilder("CallThunderCatsIntent")\
+            .require("ThunderCatsKeyword").build()
         self.register_intent(call_thundercats_intent,
                              self.handle_call_thundercats_intent)
 
@@ -68,9 +68,10 @@ class ThunderCatsSkill(MycroftSkill):
     # of a file in the dialog folder, and Mycroft speaks its contents when
     # the method is called.
 
-    def handle_call_thundercats_intent(self):
-        subprocess.call(
-            'omxplayer /home/pi/media/video/Thundercats_Intro.mp4', shell=True)
+    def handle_call_thundercats_intent(self, message):
+        self.speak_dialog("thunder cats ho")
+        # subprocess.call(
+        #    'omxplayer /home/pi/media/video/Thundercats_Intro.mp4', shell=True)
         # ser.write('t')
 
     # The "stop" method defines what Mycroft does when told to stop during
