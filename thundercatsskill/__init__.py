@@ -47,10 +47,9 @@ LOGGER = getLogger(__name__)
 class ThunderCatsSkill(MycroftSkill):
 
     # The constructor of the skill, which calls MycroftSkill's constructor
-#    def __init__(self):
-#        super(HelloWorldSkill, self).__init__(name="HelloWorldSkill")
-
-		def __init__(self):
+    #    def __init__(self):
+    #        super(HelloWorldSkill, self).__init__(name="HelloWorldSkill")
+    def __init__(self):
         super(ThunderCatsSkill, self).__init__(name="ThunderCatsSkill")
 		
 		
@@ -71,9 +70,9 @@ class ThunderCatsSkill(MycroftSkill):
     # of a file in the dialog folder, and Mycroft speaks its contents when
     # the method is called.
 
- def handle_call_thundercats_intent(self,):
-      subprocess.call('omxplayer /home/pi/media/video/Thundercats_Intro.mp4', shell=True)
-#	  ser.write('t')
+    def handle_call_thundercats_intent(self):
+        subprocess.call('omxplayer /home/pi/media/video/Thundercats_Intro.mp4', shell=True)
+    #	  ser.write('t')
 
 
     # The "stop" method defines what Mycroft does when told to stop during
