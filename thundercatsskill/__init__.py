@@ -28,11 +28,8 @@ from os.path import dirname
 from adapt.intent import IntentBuilder
 from mycroft.skills.core import MycroftSkill
 from mycroft.util.log import getLogger
-import random
-import re
 import subprocess
-import time
-import sys
+
 # from mycroft.skills.core import ser
 
 __author__ = 'vlaryn'
