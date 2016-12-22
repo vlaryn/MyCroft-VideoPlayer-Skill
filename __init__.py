@@ -69,7 +69,7 @@ class ThunderCatsSkill(MycroftSkill):
     # the method is called.
 
     def handle_call_thundercats_intent(self, message):
-        self.speak_dialog("thunder.cats.ho")
+        self.speak_dialog("thundercats.ho")
         # subprocess.call(
         #    'omxplayer /home/pi/media/video/Thundercats_Intro.mp4', shell=True)
         # ser.write('t')
