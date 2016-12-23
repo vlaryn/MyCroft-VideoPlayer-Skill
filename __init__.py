@@ -28,11 +28,8 @@ from os.path import dirname
 from adapt.intent import IntentBuilder
 from mycroft.skills.core import MycroftSkill
 from mycroft.util.log import getLogger
-import random
-import re
 import subprocess
-import time
-import sys
+
 # from mycroft.skills.core import ser
 
 __author__ = 'vlaryn'
@@ -44,25 +41,25 @@ LOGGER = getLogger(__name__)
 # The logic of each skill is contained within its own class, which inherits
 # base methods from the MycroftSkill class with the syntax you can see below:
 # "class ____Skill(MycroftSkill)"
+
+
 class ThunderCatsSkill(MycroftSkill):
 
     # The constructor of the skill, which calls MycroftSkill's constructor
-#    def __init__(self):
-#        super(HelloWorldSkill, self).__init__(name="HelloWorldSkill")
-
-		def __init__(self):
+    #    def __init__(self):
+    #        super(HelloWorldSkill, self).__init__(name="HelloWorldSkill")
+    def __init__(self):
         super(ThunderCatsSkill, self).__init__(name="ThunderCatsSkill")
-		
-		
+
     # This method loads the files needed for the skill's functioning, and
     # creates and registers each intent that the skill uses
     def initialize(self):
         self.load_data_files(dirname(__file__))
 
-        call_thundercats_intent = IntentBuilder("CallThunderCatsIntent").\
-            require("Thundercats").build()
-        self.register_intent(call_thundercats_intent, self.handle_call_thundercats_intent)
-
+        call_thundercats_intent = IntentBuilder("CallThunderCatsIntent")\
+            .require("ThunderCatsKeyword").build()
+        self.register_intent(call_thundercats_intent,
+                             self.handle_call_thundercats_intent)
 
     # The "handle_xxxx_intent" functions define Mycroft's behavior when
     # each of the skill's intents is triggered: in this case, he simply
@@ -71,10 +68,11 @@ class ThunderCatsSkill(MycroftSkill):
     # of a file in the dialog folder, and Mycroft speaks its contents when
     # the method is called.
 
- def handle_call_thundercats_intent(self,):
-      subprocess.call('omxplayer /home/pi/media/video/Thundercats_Intro.mp4', shell=True)
-#	  ser.write('t')
-
+    def handle_call_thundercats_intent(self, message):
+        self.speak_dialog("thundercats.ho")
+        # subprocess.call(
+        #    'omxplayer /home/pi/media/video/Thundercats_Intro.mp4', shell=True)
+        # ser.write('t')
 
     # The "stop" method defines what Mycroft does when told to stop during
     # the skill's execution. In this case, since the skill's functionality
@@ -85,5 +83,7 @@ class ThunderCatsSkill(MycroftSkill):
 
 # The "create_skill()" method is used to create an instance of the skill.
 # Note that it's outside the class itself.
+
+
 def create_skill():
     return ThunderCatsSkill()
